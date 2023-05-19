@@ -7,6 +7,10 @@ Useful Jupyter notebooks to get and create tasks and other [Asana](https://app.a
 * pandas
 * tqdm
 
+## Setup
+
+To get the personal access token click [here](https://developers.asana.com/docs/personal-access-token).
+
 ---
 Copyright © 2020-2023 Pittsburgh Supercomputing Center. All Rights Reserved.
 
