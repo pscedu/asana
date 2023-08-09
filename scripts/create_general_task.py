@@ -6,10 +6,11 @@ from pathlib import Path
 import datetime
 
 import warnings
+
 warnings.filterwarnings("ignore")
 
 # @icaoberg Read secrets. Assumes file exists in ~/.ASANA_SECRETS
-file = str(Path.home()) + os.sep + '.ASANA_SECRETS'
+file = str(Path.home()) + os.sep + ".ASANA_SECRETS"
 exec(open(file).read())
 
 client = asana.Client.access_token(PERSONAL_ACCESS_TOKEN)
@@ -24,35 +25,37 @@ args = parser.parse_args()
 delta = int(args.delta)
 
 if args.notes is None:
-	notes = None
+    notes = None
 else:
-	notes = args.notes
+    notes = args.notes
 
 if args.message is None:
-	message = None
+    message = None
 else:
-	message = args.message
+    message = args.message
 
 if args.notes is None:
-	notes = None
+    notes = None
 else:
-	notes = args.notes
+    notes = args.notes
 
-username='1183587634011025' #icaoberg
-workspace='1132331877475002' #PSC
+username = "1183587634011025"  # icaoberg
+workspace = "1132331877475002"  # PSC
 
-when=datetime.date.today() + datetime.timedelta(days=delta+1)
+when = datetime.date.today() + datetime.timedelta(days=delta + 1)
 
-if message is None or message == '':
-	print('Cannot create task with an empty message.')
+if message is None or message == "":
+    print("Cannot create task with an empty message.")
 else:
-	params={'name': message, \
-        	'assignee': username, \
-        	'due_on': str(when+datetime.timedelta(days=delta+1+delta)), \
-		'assignee_status': 'later', \
-        	'start_on': str(when)}
+    params = {
+        "name": message,
+        "assignee": username,
+        "due_on": str(when + datetime.timedelta(days=delta + 1 + delta)),
+        "assignee_status": "later",
+        "start_on": str(when),
+    }
 
-	if notes is not None and notes != '':
-		params['notes'] = notes
+    if notes is not None and notes != "":
+        params["notes"] = notes
 
-	answer = client.tasks.create_in_workspace(workspace,params)
+    answer = client.tasks.create_in_workspace(workspace, params)
